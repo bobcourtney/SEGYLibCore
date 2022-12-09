@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SEGYFile" nillable="true" type="SEGYFile" />
+  <xs:complexType name="SEGYFile">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="isBigEndian" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FileHeader" type="SEGYFileHeader" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Traces" type="ArrayOfSEGYTrace" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfTracesInBuffer" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="currentTrace" type="SEGYTrace" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SEGYFileHeader">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="positionOfStartOfDataTraces" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="isSEGYFileHeaderAscii" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ExtendedTextHeader" type="ArrayOfBase64Binary" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BinaryFileHeader" type="xs:base64Binary" />
+      <xs:element minOccurs="1" maxOccurs="1" name="dataSampleFormatCode" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="jobIdentificationNumberz" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="lineNumber" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="reelNumber" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="numberOfDataTracesPerEnsemble" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="numberOfAuxilaryTracesPerEnsemble" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sampleIntervalInMicroseconds" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sampleIntervalInMicrosecondsInOriginalFieldRecording" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="numberOfSamplesPerDataTrace" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="numberOfSamplesPerDataTraceForOriginalFieldRecording" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ensembleFold" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="traceSortingCode" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="verticalSumCode" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepFrequencyStart" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepFrequencyEnd" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepLength" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepCode" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="traceNumberSweepChannel" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepTraceTaperLengthAtStart" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepTraceTaperLengthAtEnd" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="taperType" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="correlatedDataTraces" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="binaryGainRecovered" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="amplitudeRecoveryMethod" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="measurementSystem" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="impulseSignalPolarity" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="vibratoryPolarityCode" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="segyFormatRevisionNumber" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="fixedLengthTraceFlag" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="numberOfExtendedTextualFileHeaderRecordsFollowing" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="lengthOfFileHeader" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBase64Binary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="base64Binary" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSEGYTrace">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SEGYTrace" nillable="true" type="SEGYTrace" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SEGYTrace">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TraceHeader" type="SEGYTraceHeader" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TraceData" type="SEGYTraceData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Data" type="ArrayOfDouble" />
+      <xs:element minOccurs="1" maxOccurs="1" name="timeTracedRecorded" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourcePositionX" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourcePositionY" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="isLatLon" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="positionOfTraceInFile" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="isBigEndian" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="totalLengthOfTraceData" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="groupPositionXGSCDIG" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="groupPositionYGSCDIG" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="codedTime" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SEGYTraceHeader">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="traceSequenceNumberWithinLine" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="traceSequenceNumberWithinFile" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="originalFieldRecordNumber" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="traceNumberWithinOriginalFieldRecord" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="energySourcePointNumber" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ensembleNumber" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="traceNumberWithinEnsemble" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="traceIdentificationCode" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="numberOfVerticallySummedTracesYieldingThisTrace" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="numberOfHorizonatallySummedTracesYieldingThisTrace" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="dataUse" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="distanceFromCenterOfSourcePointToCenterOfGroup" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="receiverGroupElevation" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="surfaceElevationAtSource" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourceDepthBelowSurface" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="datumElevationAtReceiverGroup" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="datumElevationAtSource" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="waterDepthAtSource" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="waterDepthAtGroup" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="scalarForAllElevationsAndDepths" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="scalarToBeAppliedToAllCoordinates" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourceCoordinateX" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourceCoordinateY" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="groupCoordinateX" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="groupCoordinateY" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="coordinateUnits" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="weatheringVelocity" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="subweatheringVelocity" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="upholeTimeAtSourceMsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="upholeTimeAtGroupMsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="souceStaticCorrectionMsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="groupStaticCorrectionMsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="totalStaticMsec" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="lagTimeAMsec" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="lagTimeBMsec" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="delayRecordingTimeMsec" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="muteTimeStartTimeMsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="muteTimeEndTimeMsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="numberOfSamplesInTrace" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sampleIntervalUsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="gainTypeOfFieldInstruments" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="instrumentGainConstantDB" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="instrumentEarlyOrIntialGainDB" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="correlated" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepFrequencyAtStart" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepFrequencyAtEnd" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepLengthInMsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepType" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepTaperLengthAtStartMsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sweepTaperLenghtAtEndMsec" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="taperType" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="aliasFrequencyHz" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="aliasFilterSlopeDBOctave" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="notchFrequencyHz" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="notchFilterSlopeDBOctave" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="lowCutFrequencyHz" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="highCutFrequencyHz" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="lowCutSlopeDBOctave" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="highCutSlopeDBOctave" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="yearDataRecorded" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="dayOfYear" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="hourOfDay" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="minuteOfHour" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="secondOfMinute" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="timeBasis" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="traceWeightingFactor" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="geophoneGroupNumberOfRollSwitchPositionOne" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="geophoneGroupNumberofTraceNumberOneWithinOriginalFieldRecord" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="geophoneGroupNumberofLastTraceWithinOriginalFieldRecord" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="gapSize" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="overTravel" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="xCoordinateOfEnsemble" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="yCoordinateOfEnsemble" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="inLineNumber3D" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="crossLineNumber3D" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="shotpointNumber" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="scalarAppliedToShotPointNumber" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="traceValueMeasurementUnit" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="transductionConstantMantissa" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="transductionConstantExponent" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="transductionUnits" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="deviceTraceIdentifier" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="scalarUsedToScaleTraceHeaderMSecTimes" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourceType" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourceEnergyDirectionMantissa" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourceEnergyDirectionExponent" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourceMeasurementMantissa" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourceMeasurementExponent" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="sourceMeasurementUnit" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="bigEndian" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SEGYTraceData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TraceDataBuffer" type="xs:base64Binary" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Data" type="ArrayOfDouble" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DataCopy" type="ArrayOfDouble" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDouble">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="double" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SEGYFileHeader" nillable="true" type="SEGYFileHeader" />
+  <xs:element name="SEGYTrace" nillable="true" type="SEGYTrace" />
+  <xs:element name="SEGYTraceData" nillable="true" type="SEGYTraceData" />
+  <xs:element name="SEGYTraceHeader" nillable="true" type="SEGYTraceHeader" />
+  <xs:element name="SEGYUtilities" nillable="true" type="SEGYUtilities" />
+  <xs:complexType name="SEGYUtilities" />
+</xs:schema>
